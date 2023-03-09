@@ -23,7 +23,7 @@ const editBookByIdHandler = (request, h) => {
     
     const insertedAt = new Date().toDateString();
     const updatedAt = insertedAt;
-    const index = books.filter(book => book.id === id);
+    const index = books.findIndex(book => book.id === id);
     
     if(index !== -1) {
         books[index] = {
