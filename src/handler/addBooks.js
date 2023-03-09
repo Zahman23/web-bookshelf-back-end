@@ -13,10 +13,10 @@ const addBooksHandler = (request, h) => {
         reading,
       } = request.payload;
 
-      if(name !== undefined) {
+      if(name === undefined) {
         const response = h.response({
             status: 'fail',
-            message: 'Gagal menambahkan buku, Mohon isi nama buku'
+            message: 'Gagal menambahkan buku. Mohon isi nama buku'
         })
         response.code(400);
         return response;
@@ -51,7 +51,7 @@ const addBooksHandler = (request, h) => {
       };
       books.push(newBooks);
 
-      const isSucces = bookshelf.filter(b => b.id === id).length > 0;
+      const isSucces = books.filter(b => b.id === id).length > 0;
       if(isSucces) {
         const response = h.response({
           status: 'success',
