@@ -15,13 +15,14 @@ const editBookByIdHandler = (request, h) => {
     if(readPage > pageCount){
         const response = h.response({
             status: 'fail',
-            message: 'Gagal memperbarui buku.  readPage tidak boleh lebih besar dari pageCount'
+            message: 'Gagal memperbarui buku. readPage tidak boleh lebih besar dari pageCount'
         });
         response.code(400);
         return response;
     }
-
-    const updatedAt = new Date().toDateString();
+    
+    const insertedAt = new Date().toDateString();
+    const updatedAt = insertedAt;
     const index = books.filter(book => book.id === id);
     
     if(index !== -1) {
@@ -35,6 +36,7 @@ const editBookByIdHandler = (request, h) => {
             pageCount,
             readPage,
             reading,
+            insertedAt,
             updatedAt,
         };
         const response = h.response({
